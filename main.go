@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	//two templates:
 	"html/template"
+	//also text/template
 	"log"
 	"net/http"
 	"strconv"
@@ -55,8 +57,10 @@ func handleError(w http.ResponseWriter, r *http.Request, err error) {
 }
 
 func serveHome(w http.ResponseWriter, r *http.Request) {
+	//Declare new template, must pass name
 	t := template.New("base")
 
+	//parseFiles can also take multiple arguments
 	s1, err := t.ParseFiles("templates/base.tmpl")
 	if err != nil {
 		// TODO don't panic!
