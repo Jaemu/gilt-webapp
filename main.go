@@ -42,6 +42,9 @@ func (p Person) Greet() string {
 var alice Person = Person{"Alice", Female}
 var bob = Person{"Bob", Male}
 
+//safeHandler is kind of like a function decorator since it's
+//a function that accepts functions as arguments and returns a new
+//function!
 type safeHandler func(w http.ResponseWriter, r *http.Request) error
 
 func (h safeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -90,6 +93,7 @@ func serveUserJson(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
+	//Add http header to response object w
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.Write(bts)
 	return nil
